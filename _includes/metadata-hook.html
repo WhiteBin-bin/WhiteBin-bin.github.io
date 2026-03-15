@@ -1,0 +1,133 @@
+<!-- Custom metadata and styles -->
+<style>
+  /* Center the sidebar bottom icons and add consistent spacing */
+  .sidebar-bottom {
+    justify-content: center !important;
+    gap: 1.25rem !important;
+    padding-right: 2.5rem !important;
+  }
+
+  /* Remove any existing uneven right margins from icons */
+  .sidebar-bottom a,
+  .sidebar-bottom button {
+    margin-right: 0 !important;
+    margin-left: 0 !important;
+  }
+
+  /* Hide the dot separator */
+  .sidebar-bottom .icon-border {
+    display: none !important;
+  }
+
+  /* Sidebar Nav Link Styles */
+  .nav-link,
+  .nav-link:hover,
+  .nav-link:focus {
+    text-decoration: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+    border-bottom: none !important;
+  }
+
+  #sidebar a.nav-link:hover {
+    color: var(--sidebar-active-color) !important;
+    background-color: var(--sidebar-hover-bg) !important;
+  }
+
+  /* DISABLE FOOTER LINKS: Make them plain bold text without hover or click */
+  footer a,
+  .post-tail-bottom a {
+    pointer-events: none !important;
+    text-decoration: none !important;
+    color: inherit !important;
+    font-weight: bold !important;
+    background: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    cursor: default !important;
+  }
+
+  /* DARK MODE ONLY: Remove unexpected underlines and orange colors from cards and links on hover */
+  html[data-mode='dark'] a.post-preview:hover,
+  html[data-mode='dark'] .post-meta a:hover,
+  html[data-mode='dark'] .content a:not(.img-link):not(.empty-state-btn):not(.card-wrapper):not(.post-tag):hover {
+    text-decoration: none !important;
+    color: #ffffff !important;
+    border-bottom-color: transparent !important;
+  }
+
+  /* LIGHT MODE ONLY: Standard white theme for post content and metadata (Fix for invisible text) */
+  html[data-mode='light'] .post-meta a,
+  html[data-mode='light'] .content a:not(.img-link):not(.empty-state-btn):not(.card-wrapper):not(.post-tag) {
+    color: var(--text-color) !important;
+    text-decoration: none !important;
+  }
+
+  html[data-mode='light'] .post-meta a:hover,
+  html[data-mode='light'] .content a:not(.img-link):not(.empty-state-btn):not(.card-wrapper):not(.post-tag):hover {
+    background-color: #f1f1f1 !important;
+    border-radius: 6px;
+    padding: 2px 6px;
+    margin: 0 -6px;
+  }
+
+  /* Premium Empty State Button (Vercel/Linear Style) */
+  #main-wrapper .empty-state a.empty-state-btn {
+    background-color: var(--heading-color) !important;
+    color: var(--main-bg) !important;
+    border: none !important;
+    text-decoration: none !important;
+    border-radius: 10px; /* Modern rounded corners */
+    padding: 12px 28px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    letter-spacing: -0.01em;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #main-wrapper .empty-state a.empty-state-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2) !important;
+    opacity: 0.95;
+    background-color: var(--heading-color) !important;
+  }
+
+  #main-wrapper .empty-state a.empty-state-btn:active {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1) !important;
+  }
+
+  /* Specific fix for License text (Remove the tag-pill border/bg) */
+  .post-tail-bottom .license-wrapper a {
+    background: none !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    color: var(--text-color) !important;
+    font-weight: bold !important;
+    text-decoration: none !important; /* Keep it clean as plain bold text */
+  }
+
+  /* Move code language labels next to the copy button on the right */
+  .code-header {
+    justify-content: flex-end !important;
+    gap: 0.5rem;
+  }
+
+  .code-header::before {
+    margin-left: 1rem !important;
+    margin-right: auto !important;
+    background-color: #ff5f57 !important;
+    box-shadow:
+      14px 0 0 #febc2e,
+      28px 0 0 #28c840 !important;
+  }
+
+  .code-header > span {
+    margin-left: 0 !important;
+  }
+</style>

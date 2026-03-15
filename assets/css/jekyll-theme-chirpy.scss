@@ -1,0 +1,343 @@
+---
+---
+
+/* prettier-ignore */
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+@mixin custom-dark-colors {
+  --main-bg: #0e0e11;
+  --mask-bg: #0e0e11;
+  --main-border-color: #2a2a2d;
+
+  --text-color: #ededed;
+  --text-muted-color: #a1a1aa;
+  --text-muted-highlight-color: #eaeaea;
+  --heading-color: #ffffff;
+  --label-color: #a1a1aa;
+  --blockquote-border-color: #2a2a2d;
+  --blockquote-text-color: #a1a1aa;
+  --link-color: #3291ff;
+  --link-underline-color: transparent;
+  --button-bg: #1a1a1d;
+  --btn-border-color: #2a2a2d;
+  --btn-backtotop-color: #a1a1aa;
+  --btn-backtotop-border-color: #2a2a2d;
+  --card-header-bg: #161619;
+  --checkbox-color: #2a2a2d;
+  --checkbox-checked-color: var(--link-color);
+  --img-bg: radial-gradient(circle, #1a1a1d 0%, #0e0e11 100%);
+  --shimmer-bg: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.05) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+
+  --site-title-color: #ffffff;
+  --site-subtitle-color: #a1a1aa;
+  --sidebar-bg: #0e0e11;
+  --sidebar-border-color: #2a2a2d;
+  --sidebar-muted-color: #888888;
+  --sidebar-active-color: #ffffff;
+  --sidebar-hover-bg: #1f1f22;
+  --sidebar-btn-bg: #161619;
+  --sidebar-btn-color: #a1a1aa;
+  --avatar-border-color: #2a2a2d;
+
+  --topbar-bg: rgba(14, 14, 17, 0.8);
+  --topbar-text-color: var(--text-color);
+  --search-border-color: #2a2a2d;
+  --search-icon-color: #888888;
+  --input-focus-border-color: #888888;
+
+  --post-list-text-color: #a1a1aa;
+  --btn-patinator-text-color: var(--text-color);
+  --btn-paginator-hover-color: #1f1f22;
+
+  --toc-highlight: #ffffff;
+  --toc-popup-border-color: #2a2a2d;
+  --tag-hover: #1f1f22;
+  --tb-odd-bg: #0e0e11;
+  --tb-even-bg: #161619;
+  --tb-border-color: #2a2a2d;
+  --footnote-target-bg: #1f1f22;
+  --btn-share-color: #a1a1aa;
+  --btn-share-hover-color: #ffffff;
+  --card-bg: #161619;
+  --card-hover-bg: #1f1f22;
+  --card-shadow: 0 0 0 1px #2a2a2d;
+  --kbd-wrap-color: #2a2a2d;
+  --kbd-text-color: #ededed;
+  --kbd-bg-color: #161619;
+  --prompt-text-color: #ededed;
+  --prompt-tip-bg: rgba(46, 160, 67, 0.1);
+  --prompt-tip-icon-color: #2ea043;
+  --prompt-info-bg: rgba(56, 139, 253, 0.1);
+  --prompt-info-icon-color: #388bfd;
+  --prompt-warning-bg: rgba(210, 153, 34, 0.1);
+  --prompt-warning-icon-color: #d29922;
+  --prompt-danger-bg: rgba(248, 81, 73, 0.1);
+  --prompt-danger-icon-color: #f85149;
+
+  --tag-border: #2a2a2d;
+  --tag-shadow: transparent;
+  --dash-color: #2a2a2d;
+  --search-tag-bg: #161619;
+
+  --categories-border: #2a2a2d;
+  --categories-hover-bg: #1f1f22;
+  --categories-icon-hover-color: #ffffff;
+
+  --timeline-node-bg: #2a2a2d;
+  --timeline-color: #2a2a2d;
+  --timeline-year-dot-color: #2a2a2d;
+
+  --language-border-color: #2a2a2d;
+  --highlight-bg-color: #0e0e11;
+  --highlighter-rouge-color: #3291ff;
+  --highlight-lineno-color: #888888;
+  --inline-code-bg: #161619;
+  --code-color: #ededed;
+  --code-header-text-color: #a1a1aa;
+  --code-header-muted-color: #2a2a2d;
+  --code-header-icon-color: #888888;
+  --clipboard-checked-color: #2ea043;
+  --filepath-text-color: #a1a1aa;
+}
+
+html {
+  @media (prefers-color-scheme: light) {
+    &[data-mode='dark'] {
+      @include custom-dark-colors;
+    }
+  }
+
+  @media (prefers-color-scheme: dark) {
+    &:not([data-mode]),
+    &[data-mode='dark'] {
+      @include custom-dark-colors;
+    }
+  }
+}
+
+html[data-mode='dark'] {
+  #archives li:nth-child(odd) {
+    background-image: none;
+    background-color: #0e0e11;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode='light']) {
+    #archives li:nth-child(odd) {
+      background-image: none;
+      background-color: #0e0e11;
+    }
+  }
+}
+
+/* Breadcrumb Links Customization for Dark Mode */
+#topbar {
+  #breadcrumb {
+    a,
+    span {
+      color: #ffffff !important;
+      padding: 3px 8px; /* Constant padding to prevent shifting */
+      margin: 0 -4px; /* Negative margin to keep alignment */
+      border-radius: 6px;
+      transition: background-color 0.2s ease;
+      display: inline-block; /* Essential for padding to work correctly */
+      line-height: normal;
+    }
+
+    a:hover {
+      background-color: #1f1f22 !important;
+      text-decoration: none !important;
+      border-bottom: none !important;
+    }
+
+    /* Current page text (not an anchor) */
+    span:last-child {
+      background-color: transparent !important;
+      cursor: default;
+    }
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode='light']) #topbar #breadcrumb {
+    a,
+    span {
+      color: #ffffff !important;
+    }
+    a:hover {
+      background-color: #1f1f22 !important;
+    }
+  }
+}
+
+/* Vercel-style Premium Empty State (Text only) */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 6rem 1rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+
+  .empty-state-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.15rem;
+    margin-bottom: 0.5rem;
+    color: var(--heading-color);
+    line-height: 1.1;
+  }
+
+  .empty-state-text {
+    font-size: 1.125rem;
+    color: var(--text-muted-color);
+    margin-bottom: 2.5rem;
+    font-weight: 400;
+  }
+
+  .empty-state-btn {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    padding: 12px 32px;
+    border-radius: 9999px;
+    font-weight: 700;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+    text-decoration: none !important;
+    border: 1px solid #ffffff !important;
+    display: inline-block;
+
+    &:hover,
+    &:focus,
+    &:active {
+      background-color: rgba(255, 255, 255, 0.9) !important;
+      color: #000000 !important;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+      text-decoration: none !important;
+    }
+  }
+}
+
+/* Post Card Hover Animation (Vercel-style Lift) */
+.card-wrapper {
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease !important;
+  display: block;
+  text-decoration: none !important;
+
+  &:hover {
+    transform: translateY(-5px) !important;
+
+    .post-preview {
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1) !important;
+      background-color: var(--card-hover-bg) !important;
+    }
+  }
+}
+
+.post-preview {
+  transition: all 0.25s ease !important;
+  background-color: var(--card-bg) !important;
+  border: 1px solid var(--main-border-color) !important;
+}
+
+/* Shareable Tag Style Placeholder */
+%tag-pill-style {
+  color: var(--text-color) !important;
+  background-color: transparent;
+  padding: 2px 10px;
+  border-radius: 99px;
+  transition: all 0.2s ease;
+  border: 1px solid var(--main-border-color);
+  text-decoration: none !important;
+  display: inline-block;
+
+  &:hover {
+    background-color: var(--card-hover-bg) !important;
+    color: var(--text-color) !important;
+    transform: translateY(-1px);
+    text-decoration: none !important;
+  }
+}
+
+html[data-mode='dark'] %tag-pill-style {
+  color: #ffffff !important;
+  &:hover {
+    border-color: #444447;
+  }
+}
+
+/* Category & Post Meta Tag Styling */
+.post-meta,
+.post-tail-wrapper .post-meta {
+  display: flex !important;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+
+  i {
+    margin-right: 2px !important;
+    vertical-align: middle;
+    color: var(--text-muted-color) !important;
+  }
+
+  em a,
+  a {
+    @extend %tag-pill-style;
+  }
+}
+
+/* Specific override for post footer categories and license */
+#main-wrapper {
+  .post-meta a,
+  .post-tail-wrapper a,
+  .post-tail-wrapper .post-meta em a,
+  .post-tags .post-tag {
+    &:not(.empty-state-btn):not(.card-wrapper) {
+      @extend %tag-pill-style;
+    }
+  }
+
+  /* Fix for License text color (CC BY 4.0) */
+  .post-tail-bottom .license-wrapper {
+    color: var(--text-muted-color) !important;
+    a {
+      color: var(--text-color) !important;
+      font-weight: bold;
+    }
+  }
+}
+
+/* Post Sharing - Single Icon Style */
+.post-sharing {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+
+  a {
+    color: var(--text-muted-color) !important;
+    transition: color 0.2s ease;
+    font-size: 1.25rem;
+
+    &:hover {
+      color: var(--link-color) !important;
+    }
+  }
+}
