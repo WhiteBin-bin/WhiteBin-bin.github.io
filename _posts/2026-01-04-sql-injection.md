@@ -158,7 +158,7 @@ python sqlmap.py -u "http://example.com/article.php?id=123" -D user_db --tables
 python sqlmap.py -u "http://example.com/article.php?id=123" -D user_db -T users --dump
 ```
 
-## 그래서 어케 쓰라고?
+## 그래서 어떻게 쓰라고?
 ![](/assets/img/posts/tinkletinkle.gif)
 
 앞서 살펴본 `SQL Injection` 공격들을 코드 한 줄로 막아주는 핵심 도구가 바로 `PreparedStatement`입니다.
