@@ -36,13 +36,13 @@
             <i class="fa-fw fas fa-server"></i>
             <span>BACKEND</span>
           </a>
-          {% if backend_subcategories.size > 1 %}
+          {% if backend_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle BackEnd subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if backend_subcategories.size > 1 %}
+        {% if backend_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in backend_subcategories %}
               {% if subcategory != blank %}
@@ -70,13 +70,13 @@
             <i class="fa-fw fas fa-code"></i>
             <span>FRONTEND</span>
           </a>
-          {% if frontend_subcategories.size > 1 %}
+          {% if frontend_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle FrontEnd subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if frontend_subcategories.size > 1 %}
+        {% if frontend_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in frontend_subcategories %}
               {% if subcategory != blank %}
@@ -104,13 +104,13 @@
             <i class="fa-fw fas fa-database"></i>
             <span>DATABASE</span>
           </a>
-          {% if database_subcategories.size > 1 %}
+          {% if database_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle DataBase subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if database_subcategories.size > 1 %}
+        {% if database_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in database_subcategories %}
               {% if subcategory != blank %}
@@ -138,13 +138,13 @@
             <i class="fa-fw fas fa-code-branch"></i>
             <span>LANGUAGE</span>
           </a>
-          {% if language_subcategories.size > 1 %}
+          {% if language_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle Language subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if language_subcategories.size > 1 %}
+        {% if language_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in language_subcategories %}
               {% if subcategory != blank %}
@@ -172,13 +172,13 @@
             <i class="fa-fw fas fa-microchip"></i>
             <span>CS</span>
           </a>
-          {% if cs_subcategories.size > 1 %}
+          {% if cs_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle CS subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if cs_subcategories.size > 1 %}
+        {% if cs_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in cs_subcategories %}
               {% if subcategory != blank %}
@@ -206,13 +206,13 @@
             <i class="fa-fw fas fa-diagram-project"></i>
             <span>PIPELINE</span>
           </a>
-          {% if pipeline_subcategories.size > 1 %}
+          {% if pipeline_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle Pipeline subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if pipeline_subcategories.size > 1 %}
+        {% if pipeline_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in pipeline_subcategories %}
               {% if subcategory != blank %}
@@ -240,13 +240,13 @@
             <i class="fa-fw fas fa-terminal"></i>
             <span>DEVLOG</span>
           </a>
-          {% if devlog_subcategories.size > 1 %}
+          {% if devlog_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle DevLog subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if devlog_subcategories.size > 1 %}
+        {% if devlog_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in devlog_subcategories %}
               {% if subcategory != blank %}
@@ -274,13 +274,13 @@
             <i class="fa-fw fas fa-folder-open"></i>
             <span>OTHER</span>
           </a>
-          {% if other_subcategories.size > 1 %}
+          {% if other_subcategories.size > 0 %}
             <button type="button" class="nav-tree-toggle" aria-label="Toggle Other subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}
         </div>
-        {% if other_subcategories.size > 1 %}
+        {% if other_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in other_subcategories %}
               {% if subcategory != blank %}
