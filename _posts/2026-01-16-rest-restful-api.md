@@ -1,7 +1,8 @@
 ---
 title: "REST API & RESTful API"
 date: 2026-01-16 15:45:00 +0900
-categories: [BackEnd, DataBase]
+categories: [BackEnd]
+subcategory: REST
 ---
 
 ![](/assets/img/posts/REST&RESTful.png)

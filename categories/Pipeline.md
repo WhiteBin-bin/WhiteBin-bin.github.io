@@ -1,8 +1,8 @@
 ---
 layout: category
-title: CS
-category: CS
-permalink: /categories/CS/
+title: Pipeline
+category: Pipeline
+permalink: /categories/pipeline/
 ---
 {% assign count = site.categories[page.category] | size %}
 {% if count == 0 %}

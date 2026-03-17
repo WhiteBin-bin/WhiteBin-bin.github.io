@@ -1,7 +1,8 @@
 ---
 title: "Lambda & Stream"
 date: 2026-01-16 17:30:00 +0900
-categories: [Other]
+categories: [Language]
+subcategory: Java
 ---
 
 ![](/assets/img/posts/Lambda&Stream.png)

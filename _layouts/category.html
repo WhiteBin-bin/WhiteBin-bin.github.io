@@ -8,8 +8,61 @@ layout: default
 {% if category_posts == nil or category_posts == empty %}
   {% assign category_posts = site.categories[page.category] %}
 {% endif %}
+{% capture category_subcategories_raw %}{% for post in category_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+{% assign category_subcategories = category_subcategories_raw | split: '|' | uniq | sort_natural %}
 
 <div id="page-category">
+  <style>
+    #page-category .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      margin: 0 0 1.75rem;
+      padding-left: 0.5rem;
+    }
+
+    #page-category .category-filter-btn {
+      border: 1px solid var(--main-border-color);
+      background: transparent;
+      color: var(--text-muted-color);
+      border-radius: 999px;
+      padding: 0.45rem 0.95rem;
+      font-size: 0.92rem;
+      line-height: 1;
+      transition: all 0.2s ease;
+    }
+
+    #page-category .category-filter-btn:hover {
+      color: var(--heading-color);
+      border-color: var(--text-muted-color);
+      background: var(--btn-paginator-hover-color);
+    }
+
+    #page-category .category-filter-btn.active {
+      color: var(--main-bg);
+      background: var(--heading-color);
+      border-color: var(--heading-color);
+    }
+
+    #page-category .category-filter-empty {
+      display: none;
+      margin: 1.5rem 0 0;
+      padding-left: 0.5rem;
+      color: var(--text-muted-color);
+    }
+
+    #page-category .category-post-tags {
+      margin-top: 0.35rem;
+      font-size: 0.82rem;
+      color: var(--text-muted-color);
+    }
+
+    #page-category .category-post-tags .tag-label {
+      display: inline-block;
+      margin-right: 0.45rem;
+    }
+  </style>
+
   <h1 class="ps-lg-2 mb-4">
     {%- assign cat_title = page.title | strip | downcase -%}
     {%- assign cat_name = page.category | strip | downcase -%}
@@ -17,12 +70,33 @@ layout: default
     {%- elsif cat_title contains 'frontend' or cat_name contains 'frontend' -%}<i class="fas fa-code fa-fw me-3"></i>
     {%- elsif cat_title contains 'database' or cat_name contains 'database' -%}<i class="fas fa-database fa-fw me-3"></i>
     {%- elsif cat_title contains 'cs' or cat_name contains 'cs' -%}<i class="fas fa-microchip fa-fw me-3"></i>
+    {%- elsif cat_title contains 'language' or cat_name contains 'language' -%}<i class="fas fa-code-branch fa-fw me-3"></i>
+    {%- elsif cat_title contains 'pipeline' or cat_name contains 'pipeline' -%}<i class="fas fa-diagram-project fa-fw me-3"></i>
     {%- elsif cat_title contains 'devlog' or cat_name contains 'devlog' -%}<i class="fas fa-terminal fa-fw me-3"></i>
     {%- elsif cat_title contains 'other' or cat_name contains 'other' -%}<i class="fas fa-folder-open fa-fw me-3"></i>
     {%- else -%}<i class="far fa-folder fa-fw me-3"></i>{%- endif -%}
     {{ page.title }}
-    <span class="lead text-muted ps-2">{{ category_posts | size }}</span>
+    <span id="category-post-count" class="lead text-muted ps-2">{{ category_posts | size }}</span>
   </h1>
+
+  {% assign has_visible_subcategory = false %}
+  {% for subcategory in category_subcategories %}
+    {% if subcategory != blank %}
+      {% assign has_visible_subcategory = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+
+  {% if has_visible_subcategory %}
+    <div class="category-filters" aria-label="Category Filters">
+      <button class="category-filter-btn active" type="button" data-filter="all">All</button>
+      {% for subcategory in category_subcategories %}
+        {% if subcategory != blank %}
+          <button class="category-filter-btn" type="button" data-filter="{{ subcategory | slugify }}">{{ subcategory }}</button>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
 
   <div id="post-list" class="flex-grow-1 px-xl-1">
     {% for post in category_posts %}
@@ -30,6 +104,7 @@ layout: default
       <a
         href="{{ post.url | relative_url }}"
         class="post-preview row g-0 flex-md-row-reverse"
+        data-subcategory="{{ post.subcategory | slugify }}"
       >
         {% assign card_body_col = '12' %} {% if post.image %} {% assign src =
         post.image.path | default: post.image %} {% if post.media_subpath %} {%
@@ -65,6 +140,8 @@ layout: default
                 {%- elsif cat_t contains 'frontend' or cat_n contains 'frontend' -%}<i class="fas fa-code fa-fw me-3 ms-3"></i>
                 {%- elsif cat_t contains 'database' or cat_n contains 'database' -%}<i class="fas fa-database fa-fw me-3 ms-3"></i>
                 {%- elsif cat_t contains 'cs' or cat_n contains 'cs' -%}<i class="fas fa-microchip fa-fw me-3 ms-3"></i>
+                {%- elsif cat_t contains 'language' or cat_n contains 'language' -%}<i class="fas fa-code-branch fa-fw me-3 ms-3"></i>
+                {%- elsif cat_t contains 'pipeline' or cat_n contains 'pipeline' -%}<i class="fas fa-diagram-project fa-fw me-3 ms-3"></i>
                 {%- elsif cat_t contains 'devlog' or cat_n contains 'devlog' -%}<i class="fas fa-terminal fa-fw me-3 ms-3"></i>
                 {%- elsif cat_t contains 'other' or cat_n contains 'other' -%}<i class="fas fa-folder-open fa-fw me-3 ms-3"></i>
                 {%- else -%}<i class="far fa-folder fa-fw me-3 ms-3"></i>{%- endif -%}
@@ -72,6 +149,12 @@ layout: default
                   {% for category in post.categories %} {{ category }}{%- unless
                   forloop.last -%},{%- endunless -%} {% endfor %}
                 </span>
+                {% endif %}
+                {% if post.subcategory %}
+                <div class="category-post-tags">
+                  <span class="tag-label"><i class="fa fa-layer-group fa-fw me-1"></i></span>
+                  {{ post.subcategory }}
+                </div>
                 {% endif %}
               </div>
             </div>
@@ -82,6 +165,75 @@ layout: default
     {% endfor %}
   </div>
 
+  <p class="category-filter-empty">No posts match this subcategory yet.</p>
+
   <!-- Show custom content (like the "No posts" message) -->
   <div class="content mt-5">{{ category_content }}</div>
 </div>
+
+<script>
+  const initCategoryFilters = () => {
+    const categoryPage = document.getElementById('page-category');
+    if (!categoryPage) return;
+    if (categoryPage.dataset.filtersInitialized === 'true') return;
+
+    const buttons = Array.from(categoryPage.querySelectorAll('.category-filter-btn'));
+    if (buttons.length === 0) return;
+
+    categoryPage.dataset.filtersInitialized = 'true';
+
+    const cards = Array.from(categoryPage.querySelectorAll('#post-list .card-wrapper'));
+    const count = document.getElementById('category-post-count');
+    const empty = categoryPage.querySelector('.category-filter-empty');
+
+    const applyFilter = (filter) => {
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const preview = card.querySelector('.post-preview');
+        const subcategory = preview?.dataset.subcategory || '';
+        const isVisible = filter === 'all' || subcategory === filter;
+        card.style.display = isVisible ? '' : 'none';
+        if (isVisible) visibleCount += 1;
+      });
+
+      if (count) count.textContent = visibleCount;
+      if (empty) empty.style.display = visibleCount === 0 ? 'block' : 'none';
+    };
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((item) => item.classList.toggle('active', item === button));
+        const filter = button.dataset.filter || 'all';
+        const url = new URL(window.location.href);
+        if (filter === 'all') {
+          url.searchParams.delete('subcategory');
+        } else {
+          url.searchParams.set('subcategory', filter);
+        }
+        window.history.replaceState({}, '', url);
+        applyFilter(filter);
+      });
+    });
+
+    const initialFilter = new URLSearchParams(window.location.search).get('subcategory');
+    if (initialFilter) {
+      const initialButton = buttons.find((button) => button.dataset.filter === initialFilter);
+      if (initialButton) {
+        buttons.forEach((item) => item.classList.toggle('active', item === initialButton));
+        applyFilter(initialFilter);
+        return;
+      }
+    }
+
+    applyFilter('all');
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCategoryFilters);
+  } else {
+    initCategoryFilters();
+  }
+
+  window.addEventListener('pageshow', initCategoryFilters);
+</script>

@@ -27,41 +27,276 @@
       </li>
 
       <!-- Categories -->
-      <li class="nav-item{% if page.url contains '/categories/backend/' %} active{% endif %}">
-        <a href="{{ '/categories/backend/' | relative_url }}" class="nav-link">
-          <i class="fa-fw fas fa-server"></i>
-          <span>BACKEND</span>
-        </a>
+      {% assign backend_posts = site.categories['BackEnd'] %}
+      {% capture backend_subcategories_raw %}{% for post in backend_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign backend_subcategories = backend_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/backend/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/backend/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-server"></i>
+            <span>BACKEND</span>
+          </a>
+          {% if backend_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle BackEnd subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if backend_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in backend_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/backend/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
       </li>
-      <li class="nav-item{% if page.url contains '/categories/frontend/' %} active{% endif %}">
-        <a href="{{ '/categories/frontend/' | relative_url }}" class="nav-link">
-          <i class="fa-fw fas fa-code"></i>
-          <span>FRONTEND</span>
-        </a>
+
+      {% assign frontend_posts = site.categories['FrontEnd'] %}
+      {% capture frontend_subcategories_raw %}{% for post in frontend_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign frontend_subcategories = frontend_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/frontend/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/frontend/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-code"></i>
+            <span>FRONTEND</span>
+          </a>
+          {% if frontend_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle FrontEnd subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if frontend_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in frontend_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/frontend/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
       </li>
-      <li class="nav-item{% if page.url contains '/categories/database/' %} active{% endif %}">
-        <a href="{{ '/categories/database/' | relative_url }}" class="nav-link">
-          <i class="fa-fw fas fa-database"></i>
-          <span>DATABASE</span>
-        </a>
+
+      {% assign database_posts = site.categories['DataBase'] %}
+      {% capture database_subcategories_raw %}{% for post in database_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign database_subcategories = database_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/database/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/database/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-database"></i>
+            <span>DATABASE</span>
+          </a>
+          {% if database_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle DataBase subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if database_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in database_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/database/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
       </li>
-      <li class="nav-item{% if page.url contains '/categories/CS/' %} active{% endif %}">
-        <a href="{{ '/categories/CS/' | relative_url }}" class="nav-link">
-          <i class="fa-fw fas fa-microchip"></i>
-          <span>CS</span>
-        </a>
+
+      {% assign language_posts = site.categories['Language'] %}
+      {% capture language_subcategories_raw %}{% for post in language_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign language_subcategories = language_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/language/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/language/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-code-branch"></i>
+            <span>LANGUAGE</span>
+          </a>
+          {% if language_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle Language subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if language_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in language_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/language/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
       </li>
-      <li class="nav-item{% if page.url contains '/categories/devlog/' %} active{% endif %}">
-        <a href="{{ '/categories/devlog/' | relative_url }}" class="nav-link">
-          <i class="fa-fw fas fa-terminal"></i>
-          <span>DEVLOG</span>
-        </a>
+
+      {% assign cs_posts = site.categories['CS'] %}
+      {% capture cs_subcategories_raw %}{% for post in cs_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign cs_subcategories = cs_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/CS/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/CS/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-microchip"></i>
+            <span>CS</span>
+          </a>
+          {% if cs_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle CS subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if cs_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in cs_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/CS/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
       </li>
-      <li class="nav-item{% if page.url contains '/categories/other/' %} active{% endif %}">
-        <a href="{{ '/categories/other/' | relative_url }}" class="nav-link">
-          <i class="fa-fw fas fa-folder-open"></i>
-          <span>OTHER</span>
-        </a>
+
+      {% assign pipeline_posts = site.categories['Pipeline'] %}
+      {% capture pipeline_subcategories_raw %}{% for post in pipeline_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign pipeline_subcategories = pipeline_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/pipeline/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/pipeline/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-diagram-project"></i>
+            <span>PIPELINE</span>
+          </a>
+          {% if pipeline_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle Pipeline subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if pipeline_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in pipeline_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/pipeline/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+
+      {% assign devlog_posts = site.categories['DevLog'] %}
+      {% capture devlog_subcategories_raw %}{% for post in devlog_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign devlog_subcategories = devlog_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/devlog/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/devlog/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-terminal"></i>
+            <span>DEVLOG</span>
+          </a>
+          {% if devlog_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle DevLog subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if devlog_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in devlog_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/devlog/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+
+      {% assign other_posts = site.categories['Other'] %}
+      {% capture other_subcategories_raw %}{% for post in other_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% assign other_subcategories = other_subcategories_raw | split: '|' | uniq | sort_natural %}
+      <li class="nav-item nav-tree{% if page.url contains '/categories/other/' %} active{% endif %}">
+        <div class="nav-tree-head">
+          <a href="{{ '/categories/other/' | relative_url }}" class="nav-link">
+            <i class="fa-fw fas fa-folder-open"></i>
+            <span>OTHER</span>
+          </a>
+          {% if other_subcategories.size > 1 %}
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle Other subcategories" aria-expanded="false">
+              <i class="fas fa-chevron-down"></i>
+            </button>
+          {% endif %}
+        </div>
+        {% if other_subcategories.size > 1 %}
+          <ul class="nav-sublist">
+            {% for subcategory in other_subcategories %}
+              {% if subcategory != blank %}
+                <li class="nav-subitem">
+                  <a
+                    href="{{ '/categories/other/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    class="nav-sublink"
+                    data-subcategory-link="{{ subcategory | slugify }}"
+                  >
+                    {{ subcategory }}
+                  </a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        {% endif %}
       </li>
     </ul>
   </nav>
@@ -129,3 +364,61 @@
   <!-- .sidebar-bottom -->
 </aside>
 <!-- #sidebar -->
+<script>
+  const initSidebarSubcategories = () => {
+    const sidebar = document.getElementById('sidebar');
+    if (!sidebar) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const activeSubcategory = params.get('subcategory');
+
+    sidebar.querySelectorAll('[data-subcategory-link]').forEach((link) => {
+      link.classList.toggle('active', link.dataset.subcategoryLink === activeSubcategory);
+    });
+
+    const syncSublistHeight = (tree) => {
+      const sublist = tree.querySelector('.nav-sublist');
+
+      if (!sublist) {
+        return;
+      }
+
+      sublist.style.setProperty('--sublist-height', `${sublist.scrollHeight}px`);
+    };
+
+    sidebar.querySelectorAll('.nav-tree').forEach((tree) => {
+      syncSublistHeight(tree);
+    });
+
+    sidebar.querySelectorAll('.nav-tree-toggle').forEach((button) => {
+      if (button.dataset.toggleBound === 'true') {
+        return;
+      }
+
+      button.dataset.toggleBound = 'true';
+      button.addEventListener('click', () => {
+        const tree = button.closest('.nav-tree');
+        const expanded = tree.classList.toggle('expanded');
+        button.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+        syncSublistHeight(tree);
+      });
+    });
+
+    if (sidebar.dataset.resizeBound !== 'true') {
+      sidebar.dataset.resizeBound = 'true';
+      window.addEventListener('resize', () => {
+        sidebar.querySelectorAll('.nav-tree.expanded').forEach((tree) => {
+          syncSublistHeight(tree);
+        });
+      });
+    }
+  };
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initSidebarSubcategories);
+  } else {
+    initSidebarSubcategories();
+  }
+
+  window.addEventListener('pageshow', initSidebarSubcategories);
+</script>

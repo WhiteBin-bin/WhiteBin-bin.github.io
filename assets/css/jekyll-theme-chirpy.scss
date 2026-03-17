@@ -257,6 +257,119 @@ html[data-mode='dark'] {
   border: 1px solid var(--main-border-color) !important;
 }
 
+#sidebar .nav-tree {
+  display: block;
+}
+
+#sidebar .nav-tree-head {
+  display: flex;
+  align-items: center;
+  border-radius: 12px;
+  overflow: hidden;
+  transition:
+    background-color 0.22s ease,
+    box-shadow 0.22s ease,
+    transform 0.22s ease;
+}
+
+#sidebar .nav-tree-head:hover {
+  background-color: var(--sidebar-hover-bg);
+  box-shadow: inset 0 0 0 1px var(--sidebar-border-color);
+}
+
+#sidebar .nav-tree-head .nav-link {
+  flex: 1 1 auto;
+  background: transparent !important;
+  transition: color 0.2s ease;
+}
+
+#sidebar .nav-tree-head .nav-link:hover {
+  background: transparent !important;
+}
+
+#sidebar .nav-tree-head:hover .nav-link,
+#sidebar .nav-tree-head:hover .nav-tree-toggle,
+#sidebar .nav-tree.active .nav-tree-head .nav-link,
+#sidebar .nav-tree.active .nav-tree-head .nav-tree-toggle {
+  color: var(--sidebar-active-color);
+}
+
+#sidebar .nav-tree.active .nav-tree-head {
+  background-color: var(--sidebar-hover-bg);
+  box-shadow: inset 0 0 0 1px var(--sidebar-border-color);
+}
+
+#sidebar .nav-tree-toggle {
+  border: 0;
+  background: transparent;
+  color: var(--sidebar-muted-color);
+  padding: 0.35rem 0.75rem 0.35rem 0.35rem;
+  transition:
+    color 0.2s ease,
+    background-color 0.2s ease;
+  border-radius: 0 12px 12px 0;
+}
+
+#sidebar .nav-tree-toggle:hover {
+  color: var(--sidebar-active-color);
+  background: transparent;
+}
+
+#sidebar .nav-tree-toggle i {
+  font-size: 0.8rem;
+  transition: transform 0.24s ease;
+}
+
+#sidebar .nav-sublist {
+  list-style: none;
+  margin: 0;
+  padding-left: 1.75rem;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.28s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease,
+    margin 0.24s ease,
+    transform 0.24s ease;
+  transform: translateY(-4px);
+}
+
+#sidebar .nav-tree.expanded .nav-sublist {
+  max-height: var(--sublist-height, 480px);
+  opacity: 1;
+  margin: 0.2rem 0 0.5rem;
+  transform: translateY(0);
+}
+
+#sidebar .nav-tree.expanded .nav-tree-toggle i {
+  transform: rotate(180deg);
+}
+
+#sidebar .nav-subitem {
+  margin: 0.18rem 0;
+}
+
+#sidebar .nav-sublink {
+  display: block;
+  color: var(--sidebar-muted-color);
+  font-size: 0.85rem;
+  padding: 0.32rem 0.75rem;
+  border-radius: 8px;
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+#sidebar .nav-sublink:hover {
+  color: var(--sidebar-active-color);
+  background-color: var(--sidebar-hover-bg);
+}
+
+#sidebar .nav-sublink.active {
+  color: var(--sidebar-active-color);
+  background-color: var(--sidebar-hover-bg);
+}
+
 /* Shareable Tag Style Placeholder */
 %tag-pill-style {
   color: var(--text-color) !important;
