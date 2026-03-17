@@ -1,7 +1,7 @@
 ---
 title: "SQL Injection"
 date: 2026-01-04 15:13:00 +0900
-categories: [BackEnd]
+categories: [BackEnd, DataBase]
 ---
 
 ![](/assets/img/posts/SqlInjection.png)
