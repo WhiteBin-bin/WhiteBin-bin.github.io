@@ -13,7 +13,7 @@ categories: [BackEnd, DataBase]
 
 처음에는 단순히 보안적으로 더 안전한 방식이라는 정도로 이해하고 넘어가기도 하지만, 문득 **단순히 쿼리를 실행하는 방식이 달라지는 것만으로 어떻게 해킹을 막을 수 있는 것일까** 하는 궁금증이 생기기도 하고, 실제로 `SQL Injection`
 공격이 어떤 방식으로 이루어지며 `PreparedStatement`는 어떤 원리로 이를 방어할 수 있는지에 대해 정확히 이해해 보고 싶다는 생각이 들어서 이번 글에서는 <span style="background-color:#6DB33F">**SQL Injection이 발생하는 원리와 실제 공격 방식**</span>을 살펴보고, 이어서 `PreparedStatement`가 어떤 방식으로 `SQL Injection`을 방어하는지 그 내부 동작과 메커니즘을 중심으로
-정리해보겠습니다.
+정리해보고자 합니다.
 
 ## SQL Injection이 뭘까?
 
