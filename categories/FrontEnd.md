@@ -2,7 +2,7 @@
 layout: category
 title: FrontEnd
 category: FrontEnd
-permalink: /categories/FrontEnd/
+permalink: /categories/frontend/
 ---
 {% assign count = site.categories[page.category] | size %}
 {% if count == 0 %}

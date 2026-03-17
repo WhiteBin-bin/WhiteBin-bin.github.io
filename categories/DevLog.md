@@ -2,7 +2,7 @@
 layout: category
 title: DevLog
 category: DevLog
-permalink: /categories/DevLog/
+permalink: /categories/devlog/
 ---
 {% assign count = site.categories[page.category] | size %}
 {% if count == 0 %}

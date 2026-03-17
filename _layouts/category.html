@@ -4,6 +4,10 @@ layout: default
 ---
 
 {% include lang.html %} {% assign category_content = content %}
+{% assign category_posts = page.posts %}
+{% if category_posts == nil or category_posts == empty %}
+  {% assign category_posts = site.categories[page.category] %}
+{% endif %}
 
 <div id="page-category">
   <h1 class="ps-lg-2 mb-4">
@@ -17,11 +21,11 @@ layout: default
     {%- elsif cat_title contains 'other' or cat_name contains 'other' -%}<i class="fas fa-folder-open fa-fw me-3"></i>
     {%- else -%}<i class="far fa-folder fa-fw me-3"></i>{%- endif -%}
     {{ page.title }}
-    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
+    <span class="lead text-muted ps-2">{{ category_posts | size }}</span>
   </h1>
 
   <div id="post-list" class="flex-grow-1 px-xl-1">
-    {% for post in page.posts %}
+    {% for post in category_posts %}
     <article class="card-wrapper card mb-3">
       <a
         href="{{ post.url | relative_url }}"

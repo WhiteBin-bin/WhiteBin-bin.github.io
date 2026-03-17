@@ -2,7 +2,7 @@
 layout: category
 title: Other
 category: Other
-permalink: /categories/Other/
+permalink: /categories/other/
 ---
 {% assign count = site.categories[page.category] | size %}
 {% if count == 0 %}

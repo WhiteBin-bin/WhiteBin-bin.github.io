@@ -2,7 +2,7 @@
 layout: category
 title: DataBase
 category: DataBase
-permalink: /categories/DataBase/
+permalink: /categories/database/
 ---
 {% assign count = site.categories[page.category] | size %}
 {% if count == 0 %}
