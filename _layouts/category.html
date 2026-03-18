@@ -8,7 +8,7 @@ layout: default
 {% if category_posts == nil or category_posts == empty %}
   {% assign category_posts = site.categories[page.category] %}
 {% endif %}
-{% capture category_subcategories_raw %}{% for post in category_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+{% capture category_subcategories_raw %}{% for post in category_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
 {% assign category_subcategories = category_subcategories_raw | split: '|' | uniq | sort_natural %}
 
 <div id="page-category">
@@ -81,7 +81,8 @@ layout: default
 
   {% assign has_visible_subcategory = false %}
   {% for subcategory in category_subcategories %}
-    {% if subcategory != blank %}
+    {% assign normalized_subcategory = subcategory | strip %}
+    {% if normalized_subcategory != blank %}
       {% assign has_visible_subcategory = true %}
       {% break %}
     {% endif %}
@@ -91,8 +92,9 @@ layout: default
     <div class="category-filters" aria-label="Category Filters">
       <button class="category-filter-btn active" type="button" data-filter="all">All</button>
       {% for subcategory in category_subcategories %}
-        {% if subcategory != blank %}
-          <button class="category-filter-btn" type="button" data-filter="{{ subcategory | slugify }}">{{ subcategory }}</button>
+        {% assign normalized_subcategory = subcategory | strip %}
+        {% if normalized_subcategory != blank %}
+          <button class="category-filter-btn" type="button" data-filter="{{ normalized_subcategory | slugify }}">{{ normalized_subcategory }}</button>
         {% endif %}
       {% endfor %}
     </div>
@@ -100,11 +102,21 @@ layout: default
 
   <div id="post-list" class="flex-grow-1 px-xl-1">
     {% for post in category_posts %}
+    {% capture post_subcategories_raw %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endcapture %}
+    {% assign post_subcategories = post_subcategories_raw | split: '|' %}
+    {% assign post_subcategory_slugs = '' %}
+    {% for subcategory in post_subcategories %}
+      {% assign normalized_subcategory = subcategory | strip %}
+      {% if normalized_subcategory != blank %}
+        {% assign subcategory_slug = normalized_subcategory | slugify %}
+        {% assign post_subcategory_slugs = post_subcategory_slugs | append: '|' | append: subcategory_slug | append: '|' %}
+      {% endif %}
+    {% endfor %}
     <article class="card-wrapper card mb-3">
       <a
         href="{{ post.url | relative_url }}"
         class="post-preview row g-0 flex-md-row-reverse"
-        data-subcategory="{{ post.subcategory | slugify }}"
+        data-subcategories="{{ post_subcategory_slugs }}"
       >
         {% assign card_body_col = '12' %} {% if post.image %} {% assign src =
         post.image.path | default: post.image %} {% if post.media_subpath %} {%
@@ -150,10 +162,11 @@ layout: default
                   forloop.last -%},{%- endunless -%} {% endfor %}
                 </span>
                 {% endif %}
-                {% if post.subcategory %}
+                {% if post_subcategories_raw != blank %}
                 <div class="category-post-tags">
                   <span class="tag-label"><i class="fa fa-layer-group fa-fw me-1"></i></span>
-                  {{ post.subcategory }}
+                  {% assign visible_post_subcategories = post_subcategories | where_exp: 'item', 'item != blank' %}
+                  {{ visible_post_subcategories | join: ', ' }}
                 </div>
                 {% endif %}
               </div>
@@ -191,8 +204,8 @@ layout: default
 
       cards.forEach((card) => {
         const preview = card.querySelector('.post-preview');
-        const subcategory = preview?.dataset.subcategory || '';
-        const isVisible = filter === 'all' || subcategory === filter;
+        const subcategories = preview?.dataset.subcategories || '';
+        const isVisible = filter === 'all' || subcategories.includes(`|${filter}|`);
         card.style.display = isVisible ? '' : 'none';
         if (isVisible) visibleCount += 1;
       });

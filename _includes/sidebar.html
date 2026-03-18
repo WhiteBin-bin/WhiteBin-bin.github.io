@@ -28,7 +28,7 @@
 
       <!-- Categories -->
       {% assign backend_posts = site.categories['BackEnd'] %}
-      {% capture backend_subcategories_raw %}{% for post in backend_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture backend_subcategories_raw %}{% for post in backend_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign backend_subcategories = backend_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/backend/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -45,14 +45,15 @@
         {% if backend_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in backend_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/backend/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/backend/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}
@@ -62,7 +63,7 @@
       </li>
 
       {% assign frontend_posts = site.categories['FrontEnd'] %}
-      {% capture frontend_subcategories_raw %}{% for post in frontend_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture frontend_subcategories_raw %}{% for post in frontend_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign frontend_subcategories = frontend_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/frontend/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -79,14 +80,15 @@
         {% if frontend_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in frontend_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/frontend/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/frontend/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}
@@ -96,7 +98,7 @@
       </li>
 
       {% assign database_posts = site.categories['DataBase'] %}
-      {% capture database_subcategories_raw %}{% for post in database_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture database_subcategories_raw %}{% for post in database_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign database_subcategories = database_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/database/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -113,14 +115,15 @@
         {% if database_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in database_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/database/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/database/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}
@@ -130,7 +133,7 @@
       </li>
 
       {% assign language_posts = site.categories['Language'] %}
-      {% capture language_subcategories_raw %}{% for post in language_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture language_subcategories_raw %}{% for post in language_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign language_subcategories = language_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/language/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -147,14 +150,15 @@
         {% if language_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in language_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/language/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/language/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}
@@ -164,7 +168,7 @@
       </li>
 
       {% assign cs_posts = site.categories['CS'] %}
-      {% capture cs_subcategories_raw %}{% for post in cs_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture cs_subcategories_raw %}{% for post in cs_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign cs_subcategories = cs_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/CS/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -181,14 +185,15 @@
         {% if cs_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in cs_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/CS/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/CS/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}
@@ -198,7 +203,7 @@
       </li>
 
       {% assign pipeline_posts = site.categories['Pipeline'] %}
-      {% capture pipeline_subcategories_raw %}{% for post in pipeline_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture pipeline_subcategories_raw %}{% for post in pipeline_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign pipeline_subcategories = pipeline_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/pipeline/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -215,14 +220,15 @@
         {% if pipeline_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in pipeline_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/pipeline/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/pipeline/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}
@@ -232,7 +238,7 @@
       </li>
 
       {% assign devlog_posts = site.categories['DevLog'] %}
-      {% capture devlog_subcategories_raw %}{% for post in devlog_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture devlog_subcategories_raw %}{% for post in devlog_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign devlog_subcategories = devlog_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/devlog/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -249,14 +255,15 @@
         {% if devlog_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in devlog_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/devlog/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/devlog/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}
@@ -266,7 +273,7 @@
       </li>
 
       {% assign other_posts = site.categories['Other'] %}
-      {% capture other_subcategories_raw %}{% for post in other_posts %}{% if post.subcategory %}{{ post.subcategory }}|{% endif %}{% endfor %}{% endcapture %}
+      {% capture other_subcategories_raw %}{% for post in other_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign other_subcategories = other_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/other/' %} active{% endif %}">
         <div class="nav-tree-head">
@@ -283,14 +290,15 @@
         {% if other_subcategories.size > 0 %}
           <ul class="nav-sublist">
             {% for subcategory in other_subcategories %}
-              {% if subcategory != blank %}
+              {% assign normalized_subcategory = subcategory | strip %}
+              {% if normalized_subcategory != blank %}
                 <li class="nav-subitem">
                   <a
-                    href="{{ '/categories/other/' | relative_url }}?subcategory={{ subcategory | slugify }}"
+                    href="{{ '/categories/other/' | relative_url }}?subcategory={{ normalized_subcategory | slugify }}"
                     class="nav-sublink"
-                    data-subcategory-link="{{ subcategory | slugify }}"
+                    data-subcategory-link="{{ normalized_subcategory | slugify }}"
                   >
-                    {{ subcategory }}
+                    {{ normalized_subcategory }}
                   </a>
                 </li>
               {% endif %}

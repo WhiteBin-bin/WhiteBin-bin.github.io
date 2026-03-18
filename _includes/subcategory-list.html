@@ -1,0 +1,15 @@
+{%- assign raw_subcategories = include.subcategory -%}
+{%- assign raw_subcategories_json = raw_subcategories | jsonify -%}
+
+{%- if raw_subcategories_json contains '[' -%}
+  {%- for item in raw_subcategories -%}
+    {%- assign normalized_item = item | strip -%}
+    {%- if normalized_item != blank -%}{{- normalized_item -}}|{%- endif -%}
+  {%- endfor -%}
+{%- else -%}
+  {%- assign subcategory_items = raw_subcategories | default: '' | split: ',' -%}
+  {%- for item in subcategory_items -%}
+    {%- assign normalized_item = item | strip -%}
+    {%- if normalized_item != blank -%}{{- normalized_item -}}|{%- endif -%}
+  {%- endfor -%}
+{%- endif -%}
