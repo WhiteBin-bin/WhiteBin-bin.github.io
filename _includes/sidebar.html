@@ -202,7 +202,7 @@
         {% endif %}
       </li>
 
-      {% assign pipeline_posts = site.categories['Pipeline'] %}
+      {% assign pipeline_posts = site.posts | where_exp: 'post', 'post.categories contains "PipeLine"' %}
       {% capture pipeline_subcategories_raw %}{% for post in pipeline_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
       {% assign pipeline_subcategories = pipeline_subcategories_raw | split: '|' | uniq | sort_natural %}
       <li class="nav-item nav-tree{% if page.url contains '/categories/pipeline/' %} active{% endif %}">
@@ -212,7 +212,7 @@
             <span>PIPELINE</span>
           </a>
           {% if pipeline_subcategories.size > 0 %}
-            <button type="button" class="nav-tree-toggle" aria-label="Toggle Pipeline subcategories" aria-expanded="false">
+            <button type="button" class="nav-tree-toggle" aria-label="Toggle PipeLine subcategories" aria-expanded="false">
               <i class="fas fa-chevron-down"></i>
             </button>
           {% endif %}

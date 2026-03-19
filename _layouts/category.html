@@ -6,7 +6,7 @@ layout: default
 {% include lang.html %} {% assign category_content = content %}
 {% assign category_posts = page.posts %}
 {% if category_posts == nil or category_posts == empty %}
-  {% assign category_posts = site.categories[page.category] %}
+  {% assign category_posts = site.posts | where_exp: 'post', 'post.categories contains page.category' %}
 {% endif %}
 {% capture category_subcategories_raw %}{% for post in category_posts %}{% if post.subcategory %}{% include subcategory-list.html subcategory=post.subcategory %}{% endif %}{% endfor %}{% endcapture %}
 {% assign category_subcategories = category_subcategories_raw | split: '|' | uniq | sort_natural %}

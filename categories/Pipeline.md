@@ -1,10 +1,10 @@
 ---
 layout: category
-title: Pipeline
-category: Pipeline
+title: PipeLine
+category: PipeLine
 permalink: /categories/pipeline/
 ---
-{% assign count = site.categories[page.category] | size %}
+{% assign count = site.posts | where_exp: 'post', 'post.categories contains "PipeLine"' | size %}
 {% if count == 0 %}
   <div class="empty-state">
     <h2 class="empty-state-title">(๑ > ◡ < ๑)</h2>
