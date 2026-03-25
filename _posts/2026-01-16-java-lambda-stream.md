@@ -3,6 +3,8 @@ title: "Lambda & Stream"
 date: 2026-01-16 17:30:00 +0900
 categories: [Language]
 subcategory: Java
+description: "Lamda & Stream에 대해서 적어봤습니다."
+og_image: /assets/img/posts/Lambda&Stream.png
 ---
 
 ![](/assets/img/posts/Lambda&Stream.png)

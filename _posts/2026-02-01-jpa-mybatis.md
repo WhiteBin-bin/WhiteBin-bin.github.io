@@ -3,6 +3,8 @@ title: "JPA & MyBatis"
 date: 2026-02-01 17:40:00 +0900
 categories: [BackEnd, DataBase]
 subcategory: JPA, MyBatis
+description: "JPA & MyBatis에 대해서 적어봤습니다."
+og_image: /assets/img/posts/JPA&MyBatis.png
 ---
 
 ![](/assets/img/posts/JPA&MyBatis.png)

@@ -3,6 +3,8 @@ title: "Transaction & Lock"
 date: 2026-02-23 21:00:00 +0900
 categories: [DataBase]
 subcategory: Transaction, Lock
+description: "Transaction & Lock에 대해서 적어봤습니다."
+og_image: /assets/img/posts/Transaction&Lock.png
 ---
 
 ![](/assets/img/posts/Transaction&Lock.png)

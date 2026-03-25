@@ -3,6 +3,8 @@ title: "Docker와 VM 차이"
 date: 2026-03-06 19:30:00 +0900
 categories: [PipeLine]
 subcategory: Docker, VM 
+description: "Docker와 VM 차이에 대해서 적어봤습니다."
+og_image: /assets/img/posts/Docker&Vm.png
 ---
 
 ![](/assets/img/posts/Docker&Vm.png)

@@ -3,6 +3,8 @@ title: "JPA Fetch Join vs 분리 조회"
 date: 2026-03-06 17:30:00 +0900
 categories: [BackEnd, DataBase]
 subcategory: Spring, JPA 
+description: "JPA Fetch Join vs 분리 조회에 대해서 적어봤습니다."
+og_image: /assets/img/posts/FetchJoinvs서비스%20분리.png
 ---
 
 ![](/assets/img/posts/FetchJoinvs서비스%20분리.png)

@@ -3,6 +3,8 @@ title: "REST API & RESTful API"
 date: 2026-01-16 15:45:00 +0900
 categories: [BackEnd]
 subcategory: REST
+description: "REST API & RESTful API에 대해서 적어봤습니다."
+og_image: /assets/img/posts/REST&RESTful.png
 ---
 
 ![](/assets/img/posts/REST&RESTful.png)

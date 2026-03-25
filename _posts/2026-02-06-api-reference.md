@@ -1,8 +1,10 @@
 ---
-title: "OpenApi"
+title: "SwaggerUI & ScalarAPI"
 date: 2026-02-06 19:00:00 +0900
 categories: [BackEnd]
 subcategory: SwaggerUI, ScalarAPI
+description: "SwaggerUI & ScalarAPI에 대해서 적어봤습니다."
+og_image: /assets/img/posts/JPA&MyBatis.png
 ---
 
 ![](/assets/img/posts/ApiReference.png)

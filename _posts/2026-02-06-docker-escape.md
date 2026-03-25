@@ -3,6 +3,8 @@ title: "Docker Escape"
 date: 2026-02-06 21:00:00 +0900
 categories: [PipeLine]
 subcategory: Docker
+description: "Docker Escape에 대해서 적어봤습니다."
+og_image: /assets/img/posts/DockerEscape.png
 ---
 
 ![](/assets/img/posts/DockerEscape.png)

@@ -3,6 +3,8 @@ title: "Spring & Design Pattern"
 date: 2026-02-23 23:00:00 +0900
 categories: [BackEnd]
 subcategory: Spring, DesignPattern
+description: "Spring & Design Pattern에 대해서 적어봤습니다."
+og_image: /assets/img/posts/Spring&DesignPattern.png
 ---
 
 ![](/assets/img/posts/Spring&DesignPattern.png)

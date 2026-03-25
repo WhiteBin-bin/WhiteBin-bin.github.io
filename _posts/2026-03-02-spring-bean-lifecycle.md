@@ -1,8 +1,10 @@
 ---
-title: "SpringBean 생명주기"
+title: "SpringBean LifeCycle"
 date: 2026-03-02 15:43:00 +0900
 categories: [BackEnd]
 subcategory: Spring
+description: "SpringBean LifeCycle에 대해서 적어봤습니다."
+og_image: /assets/img/posts/SpringBean.png
 ---
 
 ![](/assets/img/posts/SpringBean.png)
@@ -18,7 +20,7 @@ subcategory: Spring
 
 그래서 이번 글에서는 <span style="background-color:#6DB33F">**Spring Bean이 생성되는 전체 과정과 내부 동작을 BeanDefinition부터 프록시 생성, <br>싱글톤 캐시 구조까지 하나의 흐름으로 정리하고**</span>, 이를 통해 스프링 컨테이너의 동작 원리를 정리해보고자 합니다.
 
-## Spring Bean 생성 과정이 뭘까?
+## Spring Bean LifeCycle이 뭘까?
 
 ![](/assets/img/posts/SpringBean2.jpg)
 
