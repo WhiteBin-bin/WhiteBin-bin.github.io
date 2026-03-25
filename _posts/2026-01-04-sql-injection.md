@@ -3,6 +3,8 @@ title: "SQL Injection"
 date: 2026-01-04 15:13:00 +0900
 categories: [BackEnd, DataBase]
 subcategory: Security
+description: "SQL Injection에 대해서 적어봤습니다."
+og_image: /assets/img/posts/SqlInjection.png
 ---
 
 ![](/assets/img/posts/SqlInjection.png)

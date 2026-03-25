@@ -1,3 +1,9 @@
+{% if page.og_image %}
+<meta property="og:image" content="{{ page.og_image | absolute_url }}">
+<meta name="twitter:image" content="{{ page.og_image | absolute_url }}">
+<meta name="twitter:card" content="summary_large_image">
+{% endif %}
+
 <!-- Custom metadata and styles -->
 <style>
   /* Center the sidebar bottom icons and add consistent spacing */
