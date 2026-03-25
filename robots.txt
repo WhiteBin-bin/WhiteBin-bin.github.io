@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://whitebin-bin.github.io/sitemap.xml
